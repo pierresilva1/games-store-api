@@ -1,4 +1,4 @@
-package org.ecommerce.ecommerceapi.inventory.model;Add commentMore actions
+package org.ecommerce.ecommerceapi.inventory.model;
 
 import jakarta.persistence.*;
 import lombok.Data;

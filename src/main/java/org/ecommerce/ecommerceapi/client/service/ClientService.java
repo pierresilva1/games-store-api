@@ -1,4 +1,4 @@
-package org.ecommerce.ecommerceapi.client.service;Add commentMore actions
+package org.ecommerce.ecommerceapi.client.service;
 
 import org.ecommerce.ecommerceapi.client.dto.ClientRequestDTO;
 import org.ecommerce.ecommerceapi.client.model.Client;
@@ -87,4 +87,4 @@ public class ClientService {
         // Não inclua a senha no DTO de resposta!
         return dto;
     }
-}Add comment
+}

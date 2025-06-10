@@ -1,4 +1,4 @@
-package org.ecommerce.ecommerceapi.order.dto;More actions
+package org.ecommerce.ecommerceapi.order.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
@@ -63,7 +63,7 @@ public class PedidoResponseDTO {
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
-    }More actions
+    }
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;

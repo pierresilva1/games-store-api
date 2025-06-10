@@ -1,4 +1,4 @@
-package org.ecommerce.ecommerceapi.config;Add commentMore actions
+package org.ecommerce.ecommerceapi.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,5 +33,5 @@ public class DatabaseConfig {
         adapter.setDatabasePlatform("org.hibernate.dialect.PostgreSQLDialect");
         adapter.setPrepareConnection(true);
         return adapter;
-    }Add commentMore actions
+    }
 }

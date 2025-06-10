@@ -1,4 +1,4 @@
-package org.ecommerce.ecommerceapi.client.model;Add commentMore actions
+package org.ecommerce.ecommerceapi.client.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

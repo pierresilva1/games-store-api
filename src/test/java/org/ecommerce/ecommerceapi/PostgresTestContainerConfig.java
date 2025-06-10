@@ -1,4 +1,4 @@
-package org.ecommerce.ecommerceapi;Add commentMore actions
+package org.ecommerce.ecommerceapi;
 
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.DynamicPropertyRegistry;

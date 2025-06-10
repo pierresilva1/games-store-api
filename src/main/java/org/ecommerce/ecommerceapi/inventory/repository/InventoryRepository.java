@@ -1,4 +1,4 @@
-package org.ecommerce.ecommerceapi.inventory.repository;Add commentMore actions
+package org.ecommerce.ecommerceapi.inventory.repository;
 
 import org.ecommerce.ecommerceapi.inventory.model.Inventory;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,4 +1,4 @@
-package org.ecommerce.ecommerceapi.order.dto;More actions
+package org.ecommerce.ecommerceapi.order.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;

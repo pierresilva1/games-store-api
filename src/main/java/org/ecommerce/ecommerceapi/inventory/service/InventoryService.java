@@ -1,4 +1,4 @@
-package org.ecommerce.ecommerceapi.inventory.service;Add commentMore actions
+package org.ecommerce.ecommerceapi.inventory.service;
 
 import org.ecommerce.ecommerceapi.inventory.dto.InventoryResponseDTO;
 import org.ecommerce.ecommerceapi.inventory.dto.UpdateStockDTO;
