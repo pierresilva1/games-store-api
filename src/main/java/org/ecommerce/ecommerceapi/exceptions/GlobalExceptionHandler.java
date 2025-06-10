@@ -1,4 +1,4 @@
-package org.ecommerce.ecommerceapi.exceptions;Add commentMore actions
+package org.ecommerce.ecommerceapi.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

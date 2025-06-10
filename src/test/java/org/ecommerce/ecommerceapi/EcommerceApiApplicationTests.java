@@ -1,4 +1,4 @@
-package org.ecommerce.ecommerceapi;Add commentMore actions
+package org.ecommerce.ecommerceapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

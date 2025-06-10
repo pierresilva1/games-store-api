@@ -1,4 +1,4 @@
-package org.ecommerce.ecommerceapi.product.service;More actions
+package org.ecommerce.ecommerceapi.product.service;
 
 import org.ecommerce.ecommerceapi.product.model.Product;
 import org.ecommerce.ecommerceapi.product.repository.ProductRepository;

@@ -1,4 +1,4 @@
-package org.ecommerce.ecommerceapi.order.dto;More actions
+package org.ecommerce.ecommerceapi.order.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public class UpdatePedidoDTO {
 
-    private Long pedidoId;More actions
+    private Long pedidoId;
     private Long customerId;
     private List<Long> productIds;
     private String status;

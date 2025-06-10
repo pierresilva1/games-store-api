@@ -1,4 +1,4 @@
-package org.ecommerce.ecommerceapi.order.model;More actions
+package org.ecommerce.ecommerceapi.order.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -87,6 +87,6 @@ public class Pedido {
     public void setCustomerId(Long customerId) {
     }
 
-    public void setCreatedAt(LocalDateTime now) {More actions
+    public void setCreatedAt(LocalDateTime now) {
     }
 }
