@@ -1,6 +1,8 @@
 package org.gamesstore.gamesstoreapi.client.controller;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.gamesstore.gamesstoreapi.client.dto.ClientRequestDTO;
@@ -14,10 +16,18 @@ import org.gamesstore.gamesstoreapi.client.dto.ClientResponseDTO;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/clientes")
+@OpenAPIDefinition(
+        info = @Info(
+                title = "Games Store API", 
+                version = "1.0",
+                description = "Documentação da API de Clientes"
+        )
+)
 
-@Tag(name = "Clientes", description = "Endpoints para gerenciamento de clientes")
+@RestController
+@RequestMapping("/api/clients")
+
+@Tag(name = "Clients", description = "Endpoints para gerenciamento de clientes")
 
 public class ClientController {
 
@@ -60,7 +70,7 @@ public class ClientController {
     }
 
     @Operation(summary = "Busca clientes por email")
-    @GetMapping("/filtro")
+    @GetMapping("/filtrate")
     public ResponseEntity<List<ClientResponseDTO>> searchForEmail(@RequestParam String email) {
         List<ClientResponseDTO> clients = clientService.searchForEmail(email);
         return ResponseEntity.ok(clients);
