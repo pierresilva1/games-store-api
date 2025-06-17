@@ -15,7 +15,7 @@ import java.util.List;
 public class PedidoResponseDTO {
 
     @Schema(description = "ID do pedido gerado", example = "1001")
-    private Long pedidoId;
+    private Long pedigreeId;
 
     @Schema(description = "ID do cliente", example = "42")
     private Long customerId;
@@ -29,12 +29,12 @@ public class PedidoResponseDTO {
     @Schema(description = "Data e hora em que o pedido foi criado", example = "2025-06-01T10:30:00")
     private LocalDateTime createdAt;
 
-    public Long getPedidoId() {
-        return pedidoId;
+    public Long getPedigreeId() {
+        return pedigreeId;
     }
 
-    public void setPedidoId(Long pedidoId) {
-        this.pedidoId = pedidoId;
+    public void setPedigreeId(Long pedigreeId) {
+        this.pedigreeId = pedigreeId;
     }
 
     public Long getCustomerId() {

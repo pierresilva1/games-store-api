@@ -2,6 +2,8 @@ package org.gamesstore.gamesstoreapi.order.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 import org.gamesstore.gamesstoreapi.client.model.Client;
 import org.gamesstore.gamesstoreapi.product.model.Product;
 
@@ -9,10 +11,12 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 @Entity
 @Table(name = "pedido")
 public class Pedido {
 
+    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,6 +24,7 @@ public class Pedido {
     @NotNull
     private LocalDateTime dateCreate;
 
+    @Setter
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
@@ -35,6 +40,7 @@ public class Pedido {
     )
     private List<Product> products = new ArrayList<>();
 
+
     public Pedido() {
     }
 
@@ -47,43 +53,20 @@ public class Pedido {
 
     // Getters e Setters
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public LocalDateTime getDateCreate() {
-        return dateCreate;
-    }
-
-    public void setDateCreate(LocalDateTime dateCreate) {
+    public void setCreatedAt(LocalDateTime dateCreate) {
         this.dateCreate = dateCreate;
     }
 
-    public OrderStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(OrderStatus status) {
-        this.status = status;
-    }
-
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
+    public void setClients(Client client) {
         this.client = client;
     }
 
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
+    public void prosecutor(List<Product> products) {
         this.products = products;
     }
+
+
+
+
+
 }
