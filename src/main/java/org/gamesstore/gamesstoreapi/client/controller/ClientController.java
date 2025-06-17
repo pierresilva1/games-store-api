@@ -18,7 +18,7 @@ import java.util.List;
 
 @OpenAPIDefinition(
         info = @Info(
-                title = "Games Store API", 
+                title = "Games Store API",
                 version = "1.0",
                 description = "Documentação da API de Clientes"
         )
