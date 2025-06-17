@@ -18,7 +18,7 @@ import java.util.List;
 public class PedidoResponseDTO {
 
     private Long pedidoId;
-    private Client clienteId;
+    private Long clienteId;
     private List<Product> produtos;
     private OrderStatus status;
     private LocalDateTime dataCriacao;
