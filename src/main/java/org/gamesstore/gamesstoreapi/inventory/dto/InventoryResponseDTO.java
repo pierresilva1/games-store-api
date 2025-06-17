@@ -20,4 +20,6 @@ public class InventoryResponseDTO {
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
+
+
 }

@@ -20,4 +20,7 @@ public class UpdateStockDTO {
     public void setQuantityChange(Integer quantityChange) {
         this.quantityChange = quantityChange;
     }
+
+
+
 }

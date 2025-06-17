@@ -1,4 +1,4 @@
-package org.gamesstore.gamesstoreapi;
+package org.gamesstore.gamesstoreapi.Service;
 
 import org.gamesstore.gamesstoreapi.client.dto.ClientRequestDTO;
 import org.gamesstore.gamesstoreapi.client.dto.ClientResponseDTO;
