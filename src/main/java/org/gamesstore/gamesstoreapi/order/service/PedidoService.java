@@ -47,7 +47,6 @@ public class PedidoService {
         pedido.setCliente(cliente);
         pedido.setProdutos(produtos);
         pedido.setStatus(OrderStatus.NOVO);
-        pedido.setDataCriacao(LocalDateTime.now());
 
         return pedidoRepository.save(pedido);
     }
@@ -65,7 +64,6 @@ public class PedidoService {
                 .clienteId(pedido.getCliente().getId())
                 .produtoIds(pedido.getProdutos().stream().map(Product::getId).collect(Collectors.toList()))
                 .status(OrderStatus.valueOf(pedido.getStatus().name()))
-                .dataCriacao(pedido.getDataCriacao())
                 .build();
     }
 }

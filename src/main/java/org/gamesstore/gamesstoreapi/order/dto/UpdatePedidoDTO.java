@@ -25,5 +25,5 @@ public class UpdatePedidoDTO {
 
     private OrderStatus status;
 
-    private LocalDateTime dataCriacao;
+
 }

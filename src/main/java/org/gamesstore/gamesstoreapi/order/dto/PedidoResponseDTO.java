@@ -22,7 +22,7 @@ public class PedidoResponseDTO {
     private Long clienteId;
     private List<Long> produtoIds;
     private OrderStatus status;
-    private LocalDateTime dataCriacao;
+
 
 
 }

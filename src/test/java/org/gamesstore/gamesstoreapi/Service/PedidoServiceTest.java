@@ -81,7 +81,7 @@ class PedidoServiceTest {
         savedPedido.setCliente(client);
         savedPedido.setProdutos(List.of(product));
         savedPedido.setStatus(OrderStatus.NOVO);
-        savedPedido.setDataCriacao(LocalDateTime.now());
+       
 
         PedidoRequestDTO dto = new PedidoRequestDTO();
         dto.setClienteId(1L);

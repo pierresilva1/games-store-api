@@ -64,14 +64,13 @@ public class PedidoControllerTest {
         samplePedido.setCliente(sampleClient);
         samplePedido.setProdutos(List.of(sampleProduct1, sampleProduct2));
         samplePedido.setStatus(OrderStatus.NOVO);
-        samplePedido.setDataCriacao(LocalDateTime.now());
+
 
         sampleResponseDTO = PedidoResponseDTO.builder()
                 .pedidoId(samplePedido.getId())
                 .clienteId(sampleClient.getId())
                 .produtoIds(List.of(sampleProduct1.getId(), sampleProduct2.getId()))
                 .status(samplePedido.getStatus())
-                .dataCriacao(samplePedido.getDataCriacao())
                 .build();
 
         sampleRequestDTO = PedidoRequestDTO.builder()
