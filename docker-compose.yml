@@ -13,12 +13,12 @@ services:
       SPRING_DATASOURCE_PASSWORD: ZHEDvNZ4aC
       SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
-      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.MySQL8Dialect
+      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.MySQLDialect
       SPRING_JPA_SHOW_SQL: "true"
       SERVER_PORT: 8080
     networks:
-      - ecommerce-net
+      - gamesStore-net
 
 networks:
-  ecommerce-net:
+  gamesStore-net:
     driver: bridge
