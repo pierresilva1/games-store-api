@@ -1,33 +1,35 @@
 package org.gamesstore.gamesstoreapi.client.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
-import jakarta.validation.constraints.Email;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 @Entity
+@Table(name = "client")
 public class Client {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
     @Size(min = 3, max = 100)
+    @Column(length = 100)
     private String name;
 
     @NotBlank
     @Email
+    @Column(length = 100)
     private String email;
 
     @NotBlank
-    private String telefone;
+    @Size(min = 6)
+    @Column(length = 100)
+    private String senha;
 
     @NotBlank
-    @Size(min = 6, message = "A senha deve ter no mínimo 6 caracteres")
-    private String senha;
+    @Size(max = 20)
+    @Column(length = 20)
+    private String telefone;
 
     // Getters e setters
     public Long getId() {

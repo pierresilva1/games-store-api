@@ -1,29 +1,22 @@
 package org.gamesstore.gamesstoreapi.client.dto;
 
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import lombok.Data;
 
+@Data
 public class ClientUpdateDTO {
 
-    @Size(max = 100, message = "Nome deve ter no máximo 100 caracteres")
+    @Size(min = 2, max = 100, message = "O nome deve ter entre 2 e 100 caracteres")
     private String name;
 
-    @Email(message = "Email deve ser válido")
+    @Email(message = "Deve ser um e-mail válido")
     private String email;
 
-    // outros campos que podem ser atualizados
+    @Pattern(regexp = "\\d{10,15}", message = "O telefone deve ter entre 10 e 15 dígitos numéricos")
+    private String telefone;
 
-    // Getters e setters
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public String getEmail() {
-        return email;
-    }
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    @Size(min = 6, max = 100, message = "A senha deve ter entre 6 e 100 caracteres")
+    private String senha;
 }

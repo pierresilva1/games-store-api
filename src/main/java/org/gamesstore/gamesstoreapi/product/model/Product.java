@@ -21,11 +21,11 @@ public class Product {
 
     private String description;
 
-    private int QuantidadeEstoque;
-
     @NotNull
     @DecimalMin("0.0")
     private BigDecimal price;
+
+    // Getters e setters
 
     public Long getId() {
         return id;
@@ -57,13 +57,5 @@ public class Product {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
-    }
-
-    public int getQuantidadeEstoque() {
-        return QuantidadeEstoque;
-    }
-
-    public void setQuantidadeEstoque(Integer quantidadeEstoque) {
-        QuantidadeEstoque = quantidadeEstoque;
     }
 }
