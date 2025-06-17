@@ -64,7 +64,7 @@ public class PedidoService {
                 .pedidoId(pedido.getId())
                 .clienteId(pedido.getCliente().getId())
                 .produtoIds(pedido.getProdutos().stream().map(Product::getId).collect(Collectors.toList()))
-                .status(pedido.getStatus().name())
+                .status(OrderStatus.valueOf(pedido.getStatus().name()))
                 .dataCriacao(pedido.getDataCriacao())
                 .build();
     }

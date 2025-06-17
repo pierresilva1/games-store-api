@@ -69,7 +69,7 @@ public class PedidoControllerTest {
         sampleResponseDTO = PedidoResponseDTO.builder()
                 .pedidoId(samplePedido.getId())
                 .clienteId(sampleClient.getId())
-                .produtoId(List.of(sampleProduct1.getId(), sampleProduct2.getId()))
+                .produtoIds(List.of(sampleProduct1.getId(), sampleProduct2.getId()))
                 .status(samplePedido.getStatus())
                 .dataCriacao(samplePedido.getDataCriacao())
                 .build();
