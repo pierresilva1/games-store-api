@@ -1,6 +1,5 @@
 package org.gamesstore.gamesstoreapi.inventory.service;
 
-import lombok.Setter;
 import org.gamesstore.gamesstoreapi.inventory.dto.InventoryResponseDTO;
 import org.gamesstore.gamesstoreapi.inventory.dto.UpdateStockDTO;
 import org.gamesstore.gamesstoreapi.inventory.model.Inventory;
@@ -8,7 +7,6 @@ import org.gamesstore.gamesstoreapi.inventory.repository.InventoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Setter
 @Service
 public class InventoryService {
 
@@ -53,5 +51,4 @@ public class InventoryService {
         dto.setQuantityChange(quantityChange);
         updateStock(dto);
     }
-
 }
