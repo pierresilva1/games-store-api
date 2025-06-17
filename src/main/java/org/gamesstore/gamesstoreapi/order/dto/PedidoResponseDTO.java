@@ -17,7 +17,7 @@ import java.util.List;
 @Builder
 public class PedidoResponseDTO {
 
-    private Long id;
+    private Long pedidoId;
     private Client cliente;
     private List<Product> produtos;
     private OrderStatus status;
