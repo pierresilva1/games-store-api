@@ -60,5 +60,7 @@ public class ClientRequestDTO {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+
 }
 
