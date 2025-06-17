@@ -25,9 +25,6 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @Column(name = "data_criacao", nullable = false)
-    private LocalDateTime dataCriacao;
 
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -41,7 +38,6 @@ public class Pedido {
     @ManyToMany
     @JoinTable(
             name = "pedido_produto",
-            joinColumns = @JoinColumn(name = "pedido_id"),
             inverseJoinColumns = @JoinColumn(name = "produto_id")
     )
     private List<Product> produtos = new ArrayList<>();
