@@ -61,7 +61,7 @@ class ProductServiceTest {
         Product product = createProduct(1L, 5);
         when(productRepository.findById(1L)).thenReturn(Optional.of(product));
 
-        Optional<Product> result = productService.buscarPorId(1L);
+        Optional<Product> result = productService.buscarId(1L);
 
         assertTrue(result.isPresent());
         assertEquals("Produto Teste", result.get().getName());
@@ -73,7 +73,7 @@ class ProductServiceTest {
 
         when(productRepository.save(product)).thenReturn(product);
 
-        Product updated = productService.atualizar(product);
+        Product updated = productService.actualizer(product);
 
         assertNotNull(updated);
         assertEquals(20, updated.getQuantidadeEstoque());
@@ -84,7 +84,7 @@ class ProductServiceTest {
     void shouldThrowExceptionWhenUpdatingWithoutId() {
         Product product = createProduct(null, 5);
 
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> productService.atualizar(product));
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> productService.actualizer(product));
         assertEquals("Não é possível atualizar um produto sem ID", exception.getMessage());
     }
 
@@ -92,7 +92,7 @@ class ProductServiceTest {
     void shouldDeleteProductById() {
         doNothing().when(productRepository).deleteById(1L);
 
-        productService.deletar(1L);
+        productService.deletable(1L);
 
         verify(productRepository).deleteById(1L);
     }

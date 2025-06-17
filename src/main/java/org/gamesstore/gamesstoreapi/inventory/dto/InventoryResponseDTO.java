@@ -1,13 +1,10 @@
 package org.gamesstore.gamesstoreapi.inventory.dto;
 
-import lombok.Data;
-
-@Data
 public class InventoryResponseDTO {
-
     private Long productId;
     private Integer quantity;
 
+    // Getters e Setters
     public Long getProductId() {
         return productId;
     }
@@ -23,5 +20,4 @@ public class InventoryResponseDTO {
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
-
 }

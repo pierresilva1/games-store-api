@@ -33,7 +33,7 @@ public class ProductController {
     @Operation(summary = "Busca um produto pelo ID")
     @GetMapping("/{id}")
     public ResponseEntity<Product> searchForIdProduto(@PathVariable Long id) {
-        return productService.buscarPorId(id)
+        return productService.buscarId(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
@@ -42,13 +42,13 @@ public class ProductController {
     @PutMapping("/{id}")
     public ResponseEntity<Product> updateProduto(@PathVariable Long id, @Valid @RequestBody Product product) {
         product.setId(id);
-        return ResponseEntity.ok(productService.atualizar(product));
+        return ResponseEntity.ok(productService.actualizer(product));
     }
 
     @Operation(summary = "Remove um produto pelo ID")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProduto(@PathVariable Long id) {
-        productService.deletar(id);
+        productService.deletable(id);
         return ResponseEntity.noContent().build();
     }
 }
