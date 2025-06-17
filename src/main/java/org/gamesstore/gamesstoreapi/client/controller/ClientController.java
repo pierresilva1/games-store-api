@@ -3,6 +3,7 @@ package org.gamesstore.gamesstoreapi.client.controller;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.servers.Server;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.gamesstore.gamesstoreapi.client.dto.ClientRequestDTO;
@@ -21,8 +22,12 @@ import java.util.List;
                 title = "Games Store API",
                 version = "1.0",
                 description = "Documentação da API de Clientes"
-        )
+        ),
+        servers = {
+                @Server(url = "https://games-store-api-1.onrender.com", description = "Servidor Render")
+        }
 )
+
 
 @RestController
 @RequestMapping("/api/clients")
