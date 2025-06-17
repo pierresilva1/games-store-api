@@ -1,8 +1,10 @@
 package org.gamesstore.gamesstoreapi.Controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.gamesstore.gamesstoreapi.client.controller.ClientController;
 import org.gamesstore.gamesstoreapi.client.dto.ClientRequestDTO;
 import org.gamesstore.gamesstoreapi.client.dto.ClientResponseDTO;
+import org.gamesstore.gamesstoreapi.client.dto.ClientUpdateDTO;
 import org.gamesstore.gamesstoreapi.client.service.ClientService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,17 +16,13 @@ import static org.mockito.ArgumentMatchers.eq;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
 
 @WebMvcTest(ClientController.class)
 public class ClientControllerTest {
@@ -47,6 +45,7 @@ public class ClientControllerTest {
         sampleRequestDto.setName("John Doe");
         sampleRequestDto.setEmail("john@example.com");
         sampleRequestDto.setTelefone("123456789");
+        sampleRequestDto.setSenha("password123");
 
         sampleResponseDto = new ClientResponseDTO();
         sampleResponseDto.setId(1L);
@@ -70,9 +69,9 @@ public class ClientControllerTest {
 
     @Test
     void testListClients() throws Exception {
-        List<ClientResponseDTO> clients = Arrays.asList(sampleResponseDto);
+        List<ClientResponseDTO> clients = List.of(sampleResponseDto);
 
-        Mockito.when(clientService.listAllClient()).thenReturn(clients);
+        Mockito.when(clientService.listAllClients()).thenReturn(clients);
 
         mockMvc.perform(get("/api/clients"))
                 .andExpect(status().isOk())
@@ -81,8 +80,8 @@ public class ClientControllerTest {
     }
 
     @Test
-    void testSearchClientById() throws Exception {
-        Mockito.when(clientService.searchForIdClient(1L)).thenReturn(sampleResponseDto);
+    void testGetClientById() throws Exception {
+        Mockito.when(clientService.getClientById(1L)).thenReturn(sampleResponseDto);
 
         mockMvc.perform(get("/api/clients/1"))
                 .andExpect(status().isOk())
@@ -92,17 +91,22 @@ public class ClientControllerTest {
 
     @Test
     void testUpdateClient() throws Exception {
+        ClientUpdateDTO updateDto = new ClientUpdateDTO();
+        updateDto.setName("John Updated");
+        updateDto.setEmail("john.updated@example.com");
+        updateDto.setTelefone("987654321");
+
         ClientResponseDTO updatedClient = new ClientResponseDTO();
         updatedClient.setId(1L);
         updatedClient.setName("John Updated");
         updatedClient.setEmail("john.updated@example.com");
         updatedClient.setTelefone("987654321");
 
-        Mockito.when(clientService.updateClient(eq(1L), any(ClientRequestDTO.class))).thenReturn(updatedClient);
+        Mockito.when(clientService.updateClient(eq(1L), any(ClientUpdateDTO.class))).thenReturn(updatedClient);
 
         mockMvc.perform(put("/api/clients/1")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(sampleRequestDto)))
+                        .content(objectMapper.writeValueAsString(updateDto)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(updatedClient.getId()))
                 .andExpect(jsonPath("$.name").value("John Updated"))
@@ -119,11 +123,11 @@ public class ClientControllerTest {
 
     @Test
     void testSearchClientsByEmail() throws Exception {
-        List<ClientResponseDTO> clients = Arrays.asList(sampleResponseDto);
+        List<ClientResponseDTO> clients = List.of(sampleResponseDto);
 
-        Mockito.when(clientService.searchForEmail("john@example.com")).thenReturn(clients);
+        Mockito.when(clientService.searchClientsByEmail("john@example.com")).thenReturn(clients);
 
-        mockMvc.perform(get("/api/clients/filtrate")
+        mockMvc.perform(get("/api/clients/search")
                         .param("email", "john@example.com"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].email").value("john@example.com"));

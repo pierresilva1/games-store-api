@@ -10,12 +10,10 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -52,17 +50,17 @@ public class InventoryControllerTest {
     void testGetStock() throws Exception {
         Mockito.when(service.getStockByProductId(1L)).thenReturn(sampleInventoryResponseDTO);
 
-        mockMvc.perform(get("/api/estoque/1"))
+        mockMvc.perform(get("/api/inventory/1")) // Corrigido aqui
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.productId").value(sampleInventoryResponseDTO.getProductId()))
-                .andExpect(jsonPath("$.quantity").value(sampleInventoryResponseDTO.getQuantity()));
+                .andExpect(jsonPath("$.productId").value(1))
+                .andExpect(jsonPath("$.quantity").value(100));
     }
 
     @Test
     void testUpdateStock() throws Exception {
         Mockito.doNothing().when(service).updateStock(any(UpdateStockDTO.class));
 
-        mockMvc.perform(post("/api/estoque/update")
+        mockMvc.perform(post("/api/inventory/update") // Corrigido aqui
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(sampleUpdateStockDTO)))
                 .andExpect(status().isOk());

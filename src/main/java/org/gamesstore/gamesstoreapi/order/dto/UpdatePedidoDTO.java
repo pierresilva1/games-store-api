@@ -4,10 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.gamesstore.gamesstoreapi.client.model.Client;
+import org.gamesstore.gamesstoreapi.order.model.OrderStatus;
+import org.gamesstore.gamesstoreapi.product.model.Product;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
 
 @Data
 @Builder
@@ -15,9 +17,13 @@ import java.util.List;
 @AllArgsConstructor
 public class UpdatePedidoDTO {
 
-    private Long pedigreeId;
-    private Long customerId;
-    private List<Long> productIds;
-    private String status;
-    private LocalDateTime createdA;
+    private Long id;
+
+    private Client cliente;
+
+    private List<Product> produtos;
+
+    private OrderStatus status;
+
+    private LocalDateTime dataCriacao;
 }

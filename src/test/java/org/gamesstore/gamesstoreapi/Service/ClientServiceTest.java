@@ -2,6 +2,7 @@ package org.gamesstore.gamesstoreapi.Service;
 
 import org.gamesstore.gamesstoreapi.client.dto.ClientRequestDTO;
 import org.gamesstore.gamesstoreapi.client.dto.ClientResponseDTO;
+import org.gamesstore.gamesstoreapi.client.dto.ClientUpdateDTO;
 import org.gamesstore.gamesstoreapi.client.model.Client;
 import org.gamesstore.gamesstoreapi.client.repository.ClientRepository;
 import org.gamesstore.gamesstoreapi.client.service.ClientService;
@@ -42,6 +43,15 @@ class ClientServiceTest {
         return dto;
     }
 
+    private ClientUpdateDTO createClientUpdateDTO() {
+        ClientUpdateDTO dto = new ClientUpdateDTO();
+        dto.setName("John Doe");
+        dto.setEmail("john@example.com");
+        dto.setTelefone("123456789");
+        dto.setSenha("password");
+        return dto;
+    }
+
     private Client createClient(Long id) {
         Client client = new Client();
         client.setId(id);
@@ -72,7 +82,7 @@ class ClientServiceTest {
         List<Client> clients = Arrays.asList(createClient(1L), createClient(2L));
         when(clientRepository.findAll()).thenReturn(clients);
 
-        List<ClientResponseDTO> result = clientService.listAllClient();
+        List<ClientResponseDTO> result = clientService.listAllClients();
 
         assertEquals(2, result.size());
         verify(clientRepository, times(1)).findAll();
@@ -83,7 +93,7 @@ class ClientServiceTest {
         Client client = createClient(1L);
         when(clientRepository.findById(1L)).thenReturn(Optional.of(client));
 
-        ClientResponseDTO result = clientService.searchForIdClient(1L);
+        ClientResponseDTO result = clientService.getClientById(1L);
 
         assertNotNull(result);
         assertEquals("John Doe", result.getName());
@@ -93,13 +103,13 @@ class ClientServiceTest {
     void shouldThrowExceptionWhenClientNotFoundById() {
         when(clientRepository.findById(99L)).thenReturn(Optional.empty());
 
-        assertThrows(ResourceNotFoundException.class, () -> clientService.searchForIdClient(99L));
+        assertThrows(ResourceNotFoundException.class, () -> clientService.getClientById(99L));
     }
 
     @Test
     void shouldUpdateClient() {
         Client existingClient = createClient(1L);
-        ClientRequestDTO dto = createClientRequestDTO();
+        ClientUpdateDTO dto = createClientUpdateDTO();
 
         when(clientRepository.findById(1L)).thenReturn(Optional.of(existingClient));
         when(passwordEncoder.encode("password")).thenReturn("hashedPassword");
@@ -114,7 +124,7 @@ class ClientServiceTest {
 
     @Test
     void shouldThrowExceptionWhenUpdatingNonexistentClient() {
-        ClientRequestDTO dto = createClientRequestDTO();
+        ClientUpdateDTO dto = createClientUpdateDTO();
         when(clientRepository.findById(99L)).thenReturn(Optional.empty());
 
         assertThrows(ResourceNotFoundException.class, () -> clientService.updateClient(99L, dto));
@@ -144,9 +154,10 @@ class ClientServiceTest {
         Client client2 = createClient(2L);
         client2.setEmail("another@example.com");
 
-        when(clientRepository.findAll()).thenReturn(Arrays.asList(client1, client2));
+        when(clientRepository.findByEmailContainingIgnoreCase("john@example.com"))
+                .thenReturn(List.of(client1));
 
-        List<ClientResponseDTO> result = clientService.searchForEmail("john@example.com");
+        List<ClientResponseDTO> result = clientService.searchClientsByEmail("john@example.com");
 
         assertEquals(1, result.size());
         assertEquals("john@example.com", result.get(0).getEmail());

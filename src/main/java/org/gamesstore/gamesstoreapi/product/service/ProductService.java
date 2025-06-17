@@ -12,28 +12,33 @@ import java.util.Optional;
 public class ProductService {
 
     @Autowired
-    public ProductRepository productRepository;
+    private ProductRepository productRepository;
 
-    public Product salvar(Product product) {
+    public Product save(Product product) {
         return productRepository.save(product);
     }
 
-    public List<Product> buscarTodos() {
+    public List<Product> findAll() {
         return productRepository.findAll();
     }
 
-    public Optional<Product> buscarId(Long id) {
+    public Optional<Product> findById(Long id) {
         return productRepository.findById(id);
     }
 
-    public Product actualizer(Product product) {
-        if (product.getId() == null) {
-            throw new IllegalArgumentException("Não é possível atualizar um produto sem ID");
+    public Product update(Long id, Product product) {
+        Optional<Product> existingProduct = productRepository.findById(id);
+        if (existingProduct.isEmpty()) {
+            throw new IllegalArgumentException("Produto com ID " + id + " não encontrado.");
         }
+        product.setId(id);
         return productRepository.save(product);
     }
 
-    public void deletable(Long id) {
+    public void delete(Long id) {
+        if (!productRepository.existsById(id)) {
+            throw new IllegalArgumentException("Produto com ID " + id + " não encontrado.");
+        }
         productRepository.deleteById(id);
     }
 }

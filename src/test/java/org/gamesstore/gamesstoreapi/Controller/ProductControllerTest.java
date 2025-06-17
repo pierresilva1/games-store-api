@@ -6,18 +6,14 @@ import org.gamesstore.gamesstoreapi.product.service.ProductService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultActions;
-import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -25,7 +21,6 @@ import java.util.Optional;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
 
 @WebMvcTest(ProductController.class)
 public class ProductControllerTest {
@@ -37,7 +32,7 @@ public class ProductControllerTest {
     private ProductService productService;
 
     @Autowired
-    private ObjectMapper objectMapper;  // para converter objeto para JSON
+    private ObjectMapper objectMapper;
 
     private Product sampleProduct;
 
@@ -52,7 +47,7 @@ public class ProductControllerTest {
 
     @Test
     void testCreateProduct() throws Exception {
-        Mockito.when(productService.salvar(any(Product.class))).thenReturn(sampleProduct);
+        Mockito.when(productService.save(any(Product.class))).thenReturn(sampleProduct);
 
         mockMvc.perform(post("/api/produtos")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -64,7 +59,7 @@ public class ProductControllerTest {
 
     @Test
     void testListProducts() throws Exception {
-        Mockito.when(productService.buscarTodos()).thenReturn(Arrays.asList(sampleProduct));
+        Mockito.when(productService.findAll()).thenReturn(Arrays.asList(sampleProduct));
 
         mockMvc.perform(get("/api/produtos"))
                 .andExpect(status().isOk())
@@ -74,7 +69,7 @@ public class ProductControllerTest {
 
     @Test
     void testSearchProductById_Found() throws Exception {
-        Mockito.when(productService.buscarId(1L)).thenReturn(Optional.of(sampleProduct));
+        Mockito.when(productService.findById(1L)).thenReturn(Optional.of(sampleProduct));
 
         mockMvc.perform(get("/api/produtos/1"))
                 .andExpect(status().isOk())
@@ -84,7 +79,7 @@ public class ProductControllerTest {
 
     @Test
     void testSearchProductById_NotFound() throws Exception {
-        Mockito.when(productService.buscarId(1L)).thenReturn(Optional.empty());
+        Mockito.when(productService.findById(1L)).thenReturn(Optional.empty());
 
         mockMvc.perform(get("/api/produtos/1"))
                 .andExpect(status().isNotFound());
@@ -98,7 +93,7 @@ public class ProductControllerTest {
         updatedProduct.setDescription("Updated Description");
         updatedProduct.setPrice(BigDecimal.valueOf(150.0));
 
-        Mockito.when(productService.actualizer(any(Product.class))).thenReturn(updatedProduct);
+        Mockito.when(productService.update(any(Long.class), any(Product.class))).thenReturn(updatedProduct);
 
         mockMvc.perform(put("/api/produtos/1")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -110,7 +105,7 @@ public class ProductControllerTest {
 
     @Test
     void testDeleteProduct() throws Exception {
-        Mockito.doNothing().when(productService).deletable(1L);
+        Mockito.doNothing().when(productService).delete(1L);
 
         mockMvc.perform(delete("/api/produtos/1"))
                 .andExpect(status().isNoContent());

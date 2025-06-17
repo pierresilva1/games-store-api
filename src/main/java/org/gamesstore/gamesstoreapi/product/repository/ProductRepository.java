@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    // Aqui podemos adicionar métodos de consulta personalizados se necessário
+    // Métodos personalizados podem ser adicionados aqui se necessário
 }
