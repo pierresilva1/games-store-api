@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public class UpdatePedidoDTO {
 
-    private Long pedidoId;
+    private Long pedigreeId;
     private Long customerId;
     private List<Long> productIds;
     private String status;
