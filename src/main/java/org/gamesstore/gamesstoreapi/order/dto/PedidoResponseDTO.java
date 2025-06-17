@@ -20,7 +20,7 @@ public class PedidoResponseDTO {
 
     private Long pedidoId;
     private Long clienteId;
-    private List<Long> produtoId;
+    private List<Long> produtoIds;
     private OrderStatus status;
     private LocalDateTime dataCriacao;
 
