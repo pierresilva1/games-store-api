@@ -66,13 +66,13 @@ public class PedidoControllerTest {
         samplePedido.setStatus(OrderStatus.NOVO);
         samplePedido.setDataCriacao(LocalDateTime.now());
 
-        sampleResponseDTO = new PedidoResponseDTO(
-                samplePedido.getId(),
-                samplePedido.getCliente(),
-                samplePedido.getProdutos(),
-                samplePedido.getStatus(),
-                samplePedido.getDataCriacao()
-        );
+        sampleResponseDTO = PedidoResponseDTO.builder()
+                .pedidoId(samplePedido.getId())
+                .clienteId(sampleClient.getId())
+                .produtoId(List.of(sampleProduct1.getId(), sampleProduct2.getId()))
+                .status(samplePedido.getStatus())
+                .dataCriacao(samplePedido.getDataCriacao())
+                .build();
 
         sampleRequestDTO = PedidoRequestDTO.builder()
                 .clienteId(sampleClient.getId())
@@ -87,7 +87,7 @@ public class PedidoControllerTest {
 
         mockMvc.perform(get("/api/pedidos"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].id").value(samplePedido.getId()))
+                .andExpect(jsonPath("$[0].pedidoId").value(samplePedido.getId()))
                 .andExpect(jsonPath("$[0].status").value(samplePedido.getStatus().toString()));
     }
 
@@ -98,7 +98,7 @@ public class PedidoControllerTest {
 
         mockMvc.perform(get("/api/pedidos/1"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(samplePedido.getId()))
+                .andExpect(jsonPath("$.pedidoId").value(samplePedido.getId()))
                 .andExpect(jsonPath("$.status").value(samplePedido.getStatus().toString()));
     }
 
@@ -119,7 +119,7 @@ public class PedidoControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(sampleRequestDTO)))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.id").value(samplePedido.getId()))
+                .andExpect(jsonPath("$.pedidoId").value(samplePedido.getId()))
                 .andExpect(jsonPath("$.status").value(samplePedido.getStatus().toString()));
     }
 

@@ -1,5 +1,6 @@
 package org.gamesstore.gamesstoreapi.order.dto;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,7 +20,9 @@ public class PedidoResponseDTO {
 
     private Long pedidoId;
     private Long clienteId;
-    private List<Product> produtos;
+    private List<Long> produtoId;
     private OrderStatus status;
     private LocalDateTime dataCriacao;
+
+
 }
